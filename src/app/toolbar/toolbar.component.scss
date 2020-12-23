@@ -1,0 +1,53 @@
+.app-is-mobile .toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+.toolbar {
+    background-color: lightblue;
+    border-radius: 3px;
+}
+
+.toolbar .mat-icon-button {
+    color: black;
+    background-color: white;
+}
+
+@media(max-width: 959px){
+    .toolbar{
+        border-radius: 0px;
+    }
+}
+
+.home {
+    padding-right: 13px;
+}
+
+.menu-button {
+    padding-right: 13px;
+}
+
+a:hover,
+a:active {
+    color: white;
+}
+
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.icons{
+    font-size: 25px;
+    vertical-align: middle;
+    position: relative;
+    top: -5px;
+}

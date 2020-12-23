@@ -1,0 +1,35 @@
+<mat-toolbar class="toolbar">
+    <div class="menu-button" fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSideNavigation()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div class="home">
+        <a routerLink="/home">
+            <mat-icon class="icons">home</mat-icon>
+            Home
+        </a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <a routerLink="/collections">
+                    <mat-icon class="icons">preview</mat-icon>
+                    View Collections
+                </a>
+            </li>
+            <li>
+                <a routerLink="/alogrithms">
+                    <mat-icon class="icons">more_vert</mat-icon>
+                    Algorithms
+                </a>
+            </li>
+            <li>
+                <a routerLink="/import">
+                    <mat-icon class="icons">import_export</mat-icon>
+                    Import
+                </a>
+            </li>
+        </ul>
+    </div>
+</mat-toolbar>
