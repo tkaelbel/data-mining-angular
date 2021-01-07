@@ -1,0 +1,64 @@
+<div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+
+    <form class="register-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+      novalidate>
+      <div class="register-div-icon">
+        <mat-icon class="register-form-icon">account_circle</mat-icon>
+      </div>
+      <mat-card-content>
+        <mat-form-field class="register-full-width">
+          <input matInput placeholder="Username" name="username" [(ngModel)]="form.username" required minlength="3"
+            maxlength="20" #username="ngModel">
+          <mat-error *ngIf="(username.errors && username.errors.required) || f.submitted">Username is required
+          </mat-error>
+          <mat-error *ngIf="(username.errors && username.errors.minlength) || f.submitted">Username must be at least 3
+            characters</mat-error>
+          <mat-error *ngIf="(username.errors && username.errors.maxlength) || f.submitted">Username must be at most 20
+            characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="register-full-width">
+          <input matInput type="email" placeholder="Email" name="email" [(ngModel)]="form.email" required email
+            #email="ngModel">
+          <mat-error *ngIf="(email.errors && email.errors.required) || f.submitted">Email is required</mat-error>
+          <mat-error *ngIf="(email.errors && email.errors.email) || f.submitted">Email must be a valid Email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="register-full-width">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Password" name="password"
+            [(ngModel)]="form.password" required minLength="6" password #password="ngModel">
+
+          <mat-error *ngIf="(password.errors && password.errors.required) || f.submitted">Password is required
+          </mat-error>
+          <mat-error *ngIf="(password.errors && password.errors.minLength) || f.submitted">Password must be at least 6
+            characters</mat-error>
+
+          <mat-icon class="register-password-icon" matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="register-full-width">
+          <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" placeholder="Repeat Password" name="repeatPassword"
+            [(ngModel)]="form.repeatPassword" required minLength="6" password #repeatPassword="ngModel">
+          <mat-error *ngIf="(password.errors && password.errors.required) || f.submitted">Repeat Password is required
+          </mat-error>
+
+          <mat-icon class="register-password-icon" matSuffix (click)="hideRepeatPassword = !hideRepeatPassword">{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-error *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </mat-error>
+
+      <mat-error *ngIf="f.submitted && form.password != form.repeatPassword">
+        Password did not match!
+      </mat-error>
+
+      <mat-hint *ngIf="isSuccessful">Your registration is successful!</mat-hint>
+
+      <button mat-stroked-button color="accent" class="btn-block">
+        <span>Submit</span>
+      </button>
+
+    </form>
+  </mat-card>
+</div>

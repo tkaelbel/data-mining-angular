@@ -2,10 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { DatabasesComponent } from '../databases/databases.component';
+import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
+  // { path: 'register', component: RegisterComponent }
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'databases', component: DatabasesComponent},
+  { path: 'register', component: RegisterComponent}
+  // { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 @NgModule({
   imports: [

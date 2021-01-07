@@ -4,30 +4,53 @@
             <mat-icon>menu</mat-icon>
         </button>
     </div>
-    <div class="home">
-        <a routerLink="/home">
-            <mat-icon class="icons">home</mat-icon>
-            Home
-        </a>
-    </div>
     <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
-        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <ul fxLayout fxLayoutGap="15px" class="navigation">
             <li>
-                <a routerLink="/collections">
-                    <mat-icon class="icons">preview</mat-icon>
-                    View Collections
+                <a [hidden]="authenticated()" routerLinkActive="active" routerLink="/home">
+                    <mat-icon class="icons">home</mat-icon>
+                    Home
                 </a>
             </li>
             <li>
-                <a routerLink="/alogrithms">
+                <a [hidden]="!authenticated()" routerLinkActive="active" routerLink="/databases">
+                    <mat-icon class="icons">preview</mat-icon>
+                    Databases
+                </a>
+            </li>
+            <li>
+                <a [hidden]="!authenticated()" routerLinkActive="active" routerLink="/alogrithms">
                     <mat-icon class="icons">more_vert</mat-icon>
                     Algorithms
                 </a>
             </li>
             <li>
-                <a routerLink="/import">
+                <a [hidden]="!authenticated()" routerLinkActive="active" routerLink="/import">
                     <mat-icon class="icons">import_export</mat-icon>
                     Import
+                </a>
+            </li>
+          
+        </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation">
+            <li>
+                <a [hidden]="authenticated()" routerLinkActive="active" routerLink="/register">
+                    <mat-icon class="icons">create</mat-icon>
+                    Sign up
+                </a>
+            </li>
+            <li>
+                <a [hidden]="authenticated()" routerLinkActive="active" routerLink="/login">
+                    <mat-icon class="icons">login</mat-icon>
+                    Login
+                </a>
+            </li>
+            <li>
+                <a [hidden]="!authenticated()" routerLinkActive="active" routerLink="/logout">
+                    <mat-icon class="icons">exit_to_app</mat-icon>
+                    Logout
                 </a>
             </li>
         </ul>
