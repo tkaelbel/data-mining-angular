@@ -1,11 +1,10 @@
 <div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
-
+  <mat-card>
+    <div class="register-div-icon">
+      <mat-icon class="register-form-icon">account_circle</mat-icon>
+    </div>
     <form class="register-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
-      novalidate>
-      <div class="register-div-icon">
-        <mat-icon class="register-form-icon">account_circle</mat-icon>
-      </div>
+      novalidate *ngIf="!isSuccessful">
       <mat-card-content>
         <mat-form-field class="register-full-width">
           <input matInput placeholder="Username" name="username" [(ngModel)]="form.username" required minlength="3"
@@ -43,22 +42,23 @@
 
           <mat-icon class="register-password-icon" matSuffix (click)="hideRepeatPassword = !hideRepeatPassword">{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
+
       </mat-card-content>
 
       <mat-error *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        Signup failed!<br />
       </mat-error>
 
       <mat-error *ngIf="f.submitted && form.password != form.repeatPassword">
         Password did not match!
       </mat-error>
 
-      <mat-hint *ngIf="isSuccessful">Your registration is successful!</mat-hint>
-
       <button mat-stroked-button color="accent" class="btn-block">
         <span>Submit</span>
       </button>
 
     </form>
+
+    <mat-hint class="hint-successful" *ngIf="isSuccessful">Your registration is successful!</mat-hint>
   </mat-card>
 </div>
