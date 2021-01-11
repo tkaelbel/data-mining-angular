@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
-import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,26 +12,23 @@ export class ToolbarComponent implements OnInit {
 
   @Output() public sideNavigationToogle = new EventEmitter();
 
-  constructor(private apiService: ApiService, private httpClient: HttpClient, private router: Router) {
-    this.apiService.authenticate({}, () => {});
-   }
+  isLoggedIn$!: Observable<boolean>;
+
+  constructor(private tokenStorageService: TokenStorageService, private router: Router) {
+    
+  }
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.tokenStorageService.isLoggedIn;
   }
 
   public onToggleSideNavigation = () => {
     this.sideNavigationToogle.emit();
   }
 
-  public logout() {
-    this.httpClient.post('logout', {}).pipe(finalize(() => {
-      this.apiService.isAuthenticated = false;
-      this.router.navigateByUrl('/login');
-    })).subscribe();
-  }
-
-  public authenticated() {
-    return this.apiService.isAuthenticated;
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 
 }

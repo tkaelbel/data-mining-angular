@@ -8,16 +8,22 @@
     width: 100%;
 }
 
-.login-wrapper .login-full-width,
 .login-wrapper .btn-block {
     width: 100%;
 }
 
-.login-wrapper mat-card-header {
-    text-align: center;
+.login-wrapper .login-full-width {
     width: 100%;
-    display: block;
-    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.login-password-icon {
+    font-size: 25px;
+}
+
+.login-wrapper .login-form-icon {
+    font-size: 100px;
+    margin-left: 75px;
 }
 
 .login-wrapper mat-card-header mat-card-title {
