@@ -11,6 +11,11 @@
     font-weight: bold;
 }
 
+.mat-header-cell {
+    font-size: 18px;
+
+}
+
 .mat-figure {
     // display: block !important;
     // justify-content: flex-start !important ;
@@ -29,7 +34,7 @@
 }
 
  .mat-table {
-    background-color: #dcdcdc24;
+    background-color: white;
  }
  
 .expansion-figure {
