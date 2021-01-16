@@ -34,7 +34,7 @@
 .login-wrapper .mat-card {
     margin-top: 200px;
     padding: 40px 70px 50px;
-    background-color: lightblue;
+    background-color:  #aecccc;
 }
 
 .login-wrapper .mat-card::before {
@@ -48,7 +48,8 @@
 }
 
 .login-wrapper .mat-stroked-button.mat-accent {
-    color: lightblue;
+    color:  #aecccc;
+    border-color: black;
 }
 
 .login-wrapper .mat-stroked-button.mat-accent span{
