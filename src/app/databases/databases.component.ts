@@ -13,9 +13,8 @@ export class DatabasesComponent implements OnInit {
 
   public dataSource: Array<any> = [];
   public columns: string[] = [];
-  public firstCollection!: string;
-
-  public collectionData: ICollectionData = {};
+  public selectedCollection!: string;
+  public selectedDatabase!: string;
 
   constructor(private dataService: DataService) {
     this.dataService.getDatabases().subscribe((data) => {
@@ -24,24 +23,42 @@ export class DatabasesComponent implements OnInit {
       if (this.databases.length === 0) return;
 
       const firstElement = this.databases[0];
-      const firstDatabaseName = !firstElement.databaseName ? '' : firstElement.databaseName;
-      this.firstCollection = !firstElement.collections ? '' : firstElement.collections[0];
-      this.dataService.getCollectionData(firstDatabaseName, this.firstCollection).subscribe((data: ICollectionData) => {
-        if (data.data) {
-          data.data.forEach((keyValueArray: IKeyValue[]) => {
-            const row: any = {};
-            keyValueArray.forEach((keyValue: IKeyValue) => {
-              row[keyValue.key as string] = keyValue.value;
-            });
-            this.dataSource.push(row);
-          });
-        }
-
-        if (data.columns)
-          this.columns = data.columns;
-      })
+      this.selectedDatabase = !firstElement.databaseName ? '' : firstElement.databaseName;
+      this.selectedCollection = !firstElement.collections ? '' : firstElement.collections[0];
+      this.dataService.getCollectionData(this.selectedDatabase, this.selectedCollection).subscribe((data: ICollectionData) => {
+        this.convertDataToDataSource(data);
+      });
     });
 
+  }
+
+  public clickedExpansionPanelItem(databaseName: string | undefined, nameOfExpansionPanelItem: string): void {
+
+    if(this.selectedCollection !== nameOfExpansionPanelItem || this.selectedDatabase !== databaseName){
+      this.dataSource = [];
+      this.selectedCollection = nameOfExpansionPanelItem;
+      this.selectedDatabase = databaseName as string;
+      this.dataService.getCollectionData(databaseName as string, nameOfExpansionPanelItem).subscribe((data: ICollectionData) => {
+        this.convertDataToDataSource(data);
+      });
+    }
+
+    
+  }
+
+  private convertDataToDataSource(data: ICollectionData): void {
+    if (data.data) {
+      data.data.forEach((keyValueArray: IKeyValue[]) => {
+        const row: any = {};
+        keyValueArray.forEach((keyValue: IKeyValue) => {
+          row[keyValue.key as string] = keyValue.value;
+        });
+        this.dataSource.push(row);
+      });
+    }
+
+    if (data.columns)
+      this.columns = data.columns;
   }
 
 

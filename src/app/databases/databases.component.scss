@@ -5,7 +5,7 @@
 
 .table-header {
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 10px;
     margin-bottom: 15px;
     font-weight: bold;
@@ -13,18 +13,21 @@
 
 .mat-header-cell {
     font-size: 18px;
-
+    background-color: azure;
+    font-weight: bold;
 }
 
-.mat-figure {
-    // display: block !important;
-    // justify-content: flex-start !important ;
-    // align-items: flex-start !important;
-    // position: unset !important;
- }
+.mat-cell {
+    font-size: 15px;
+}
+
+.mat-grid-list {
+    height: 100%;
+}
 
  .mat-grid-tile {
     padding-top: 2px !important;
+    overflow: visible;
     
  }
 
@@ -37,12 +40,9 @@
     background-color: white;
  }
  
-.expansion-figure {
-    // display: block;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-    // height: 90%;
+
+.mat-stroked-button {
+    border-color: transparent;
 }
 
 

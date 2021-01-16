@@ -5,12 +5,14 @@
                 <mat-panel-title class="panel-title">{{database.databaseName}}</mat-panel-title>
             </mat-expansion-panel-header>
             <div *ngFor="let collection of database.collections">
-                <p>{{collection}}</p>
+                <button mat-stroked-button (click)="clickedExpansionPanelItem(database.databaseName, collection)">
+                    <span>{{collection}}</span>
+                </button>
             </div>
         </mat-expansion-panel>
     </mat-grid-tile>
     <mat-grid-tile colspan="8">
-        <p class="table-header">{{firstCollection}}</p>
+        <p class="table-header">{{selectedCollection}}</p>
         <mat-table *ngIf="dataSource" [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container *ngFor="let column of columns" [matColumnDef]="column">
