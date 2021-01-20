@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICollectionData, IDatabaseModel, IKeyValue } from '../models/databases.model';
+import { IAlgorithmNames, ICollectionData, IDatabaseModel, IKeyValue } from '../models/databases.model';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -10,11 +10,11 @@ import { DataService } from '../services/data.service';
 export class DatabasesComponent implements OnInit {
 
   public databases: Array<IDatabaseModel> = [];
-
   public dataSource: Array<any> = [];
   public columns: string[] = [];
   public selectedCollection!: string;
   public selectedDatabase!: string;
+  public algorithmNames: Set<String> = new Set();
 
   constructor(private dataService: DataService) {
     this.dataService.getDatabases().subscribe((data) => {
@@ -30,6 +30,14 @@ export class DatabasesComponent implements OnInit {
       });
     });
 
+    this.dataService.getAlgorithmNames().subscribe((data: IAlgorithmNames) => {
+      this.algorithmNames = data.algorithmNames;
+    });
+  }
+
+
+  public clickColumn() {
+    console.log("Test");
   }
 
   public clickedExpansionPanelItem(databaseName: string | undefined, nameOfExpansionPanelItem: string): void {

@@ -10,6 +10,10 @@ export interface ICollectionData {
     data?: Array<Array<IKeyValue>>;
 }
 
+export interface IAlgorithmNames {
+    algorithmNames: Set<string>;
+}
+
 export interface IKeyValue {
     key?: string;
     value?: any;

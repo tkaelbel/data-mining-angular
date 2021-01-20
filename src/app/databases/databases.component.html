@@ -16,11 +16,21 @@
         <mat-table *ngIf="dataSource" [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container *ngFor="let column of columns" [matColumnDef]="column">
-                <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> 
+                    {{column}}
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                          <div *ngFor="let algorithName of algorithmNames">
+                            <button mat-menu-item>
+                                <span>{{algorithName}}</span>
+                              </button>
+                          </div>
+                      </mat-menu> 
+                </mat-header-cell>
                 <mat-cell *matCellDef="let object"> {{object[column]}} </mat-cell>
             </ng-container>
-          
-
             <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: columns;"></mat-row>
         </mat-table>
