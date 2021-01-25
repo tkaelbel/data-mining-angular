@@ -1,0 +1,38 @@
+<div class="apriori-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <div>
+            <mat-icon class="apriori-form-icon">calculate
+            </mat-icon>
+            <mat-card-title class="apriori-title">apriori</mat-card-title>
+        </div>
+        <form name="form" class="apriori-form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <mat-card-content>
+                <mat-form-field class="apriori-full-width">
+                    <input matInput name="minimumSupport" placeholder="Minimum support" required minlength="1">
+                </mat-form-field>
+
+                <mat-form-field class="apriori-full-width">
+                    <input matInput name="minimumConfidence" placeholder="Minimum confidence" required minlength="1">
+                </mat-form-field>
+
+                <mat-form-field class="apriori-full-width">
+                    <input matInput name="itemCount" placeholder="Item count" required minlength="1">
+                </mat-form-field>
+
+                <button mat-stroked-button>
+                    <span>Start</span>
+                </button>
+
+            </mat-card-content>
+
+            
+
+            <mat-form-field fxFlex appearance="outline" style="background-color: whitesmoke;">
+                <mat-label>Output</mat-label>
+                <textarea disabled="true" matInput cdkTextareaAutosize cdkAutosizeMinRows="40"></textarea>
+            </mat-form-field>
+
+            
+        </form>
+    </mat-card>
+</div>

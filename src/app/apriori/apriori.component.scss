@@ -1,0 +1,78 @@
+.apriori-wrapper .mat-card {
+    width: 1000px;
+    height: 50%;
+    margin-top: 50px;
+    padding: 40px 70px;
+    background-color: #aecccc;
+}
+
+.apriori-wrapper .mat-card::before {
+    background-color: transparent;
+}
+
+.apriori-wrapper .mat-stroked-button {
+    border: 1px solid currentColor;
+    line-height: 54px;
+    background: #fff7fa;
+    display: block;
+    width: 75%;
+}
+
+mat-label {
+    font-weight: 900;
+    font-size: 18px;
+    color: black;
+}
+
+.apriori-wrapper .mat-stroked-button.mat-accent {
+    color: #aecccc;
+    border-color: black;
+}
+
+.apriori-wrapper .mat-stroked-button.mat-accent span {
+    color: black;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: black;
+    background-color: whitesmoke;
+}
+
+
+textarea {
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+.mat-card-content {
+    width: 250px;
+    padding-top: 20px;
+}
+
+.apriori-wrapper .apriori-header-container {
+    padding-bottom: 20px;
+}
+
+.apriori-wrapper .apriori-title {
+    padding-left: 50px;
+    padding-top: 15px;
+}
+
+.apriori-wrapper .apriori-form {
+    min-width: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.apriori-wrapper .apriori-form-icon {
+    font-size: 50px;
+    float: left;
+}
+
+.apriori-wrapper .btn-block {
+    display: block;
+}
+
+.apriori-wrapper .apriori-full-width {
+    margin-bottom: 15px;
+}
