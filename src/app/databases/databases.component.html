@@ -22,9 +22,9 @@
                         <mat-icon>more_vert</mat-icon>
                       </button>
                       <mat-menu #menu="matMenu">
-                          <div *ngFor="let algorithName of algorithmNames">
-                            <button mat-menu-item>
-                                <span>{{algorithName}}</span>
+                          <div *ngFor="let algorithmName of algorithmNames">
+                            <button mat-menu-item (click)="clickMenuItem(algorithmName)">
+                                <span>{{algorithmName}}</span>
                               </button>
                           </div>
                       </mat-menu> 

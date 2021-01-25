@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IAlgorithmNames, ICollectionData, IDatabaseModel, IKeyValue } from '../models/databases.model';
 import { DataService } from '../services/data.service';
 
@@ -14,9 +15,9 @@ export class DatabasesComponent implements OnInit {
   public columns: string[] = [];
   public selectedCollection!: string;
   public selectedDatabase!: string;
-  public algorithmNames: Set<String> = new Set();
+  public algorithmNames: Set<string> = new Set();
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private router: Router) {
     this.dataService.getDatabases().subscribe((data) => {
       this.databases = data;
 
@@ -36,8 +37,10 @@ export class DatabasesComponent implements OnInit {
   }
 
 
-  public clickColumn() {
-    console.log("Test");
+  public clickMenuItem(algorithmName: string) {
+    if(algorithmName){
+      this.router.navigateByUrl(`/${algorithmName}`);
+    }
   }
 
   public clickedExpansionPanelItem(databaseName: string | undefined, nameOfExpansionPanelItem: string): void {
