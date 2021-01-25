@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { AprioriComponent } from './apriori/apriori.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     ToolbarComponent,
     DatabasesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AprioriComponent
   ],
   imports: [
     BrowserModule,

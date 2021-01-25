@@ -5,13 +5,15 @@ import { HomeComponent } from '../home/home.component';
 import { DatabasesComponent } from '../databases/databases.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { AprioriComponent } from '../apriori/apriori.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'databases', component: DatabasesComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'apriori', component: AprioriComponent}
 ];
 @NgModule({
   imports: [
