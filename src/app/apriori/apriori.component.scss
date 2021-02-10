@@ -42,6 +42,13 @@ mat-label {
 textarea {
     width: 100%;
     background-color: whitesmoke;
+    color: black;
+}
+
+textarea:disabled {
+    width: 100%;
+    background-color: whitesmoke;
+    color: black;
 }
 
 .mat-card-content {
