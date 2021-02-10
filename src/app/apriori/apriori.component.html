@@ -8,15 +8,19 @@
         <form name="form" class="apriori-form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <mat-card-content>
                 <mat-form-field class="apriori-full-width">
-                    <input matInput name="minimumSupport" placeholder="Minimum support" required minlength="1">
+                    <input matInput type="number" name="minimumSupport" [(ngModel)]="form.minimumSupport" #minimumSupport="ngModel" placeholder="Minimum support" min="0" max="1" required minlength="1">
+                    <mat-error *ngIf="(minimumSupport.errors && minimumSupport.errors.required) || f.submitted">Minimum support is required!
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="apriori-full-width">
-                    <input matInput name="minimumConfidence" placeholder="Minimum confidence" required minlength="1">
+                    <input matInput type="number" name="minimumConfidence" [(ngModel)]="form.minimumConfidence" #minimumConfidence="ngModel" placeholder="Minimum confidence" min="0" max="1" required minlength="1">
+                    <mat-error *ngIf="(minimumConfidence.errors && minimumConfidence.errors.required) || f.submitted">Minimum confidence is required!
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="apriori-full-width">
-                    <input matInput name="itemCount" placeholder="Item count" required minlength="1">
+                    <input matInput type="number" name="itemCount" [(ngModel)]="form.itemCount" #itemCount="ngModel" placeholder="Item count" min="0" minlength="1">
                 </mat-form-field>
 
                 <button mat-stroked-button>
@@ -29,7 +33,7 @@
 
             <mat-form-field fxFlex appearance="outline" style="background-color: whitesmoke;">
                 <mat-label>Output</mat-label>
-                <textarea disabled="true" matInput cdkTextareaAutosize cdkAutosizeMinRows="40"></textarea>
+                <textarea disabled="true" matInput cdkTextareaAutosize cdkAutosizeMinRows="40">{{textAreaText}}</textarea>
             </mat-form-field>
 
             
