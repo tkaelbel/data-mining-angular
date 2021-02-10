@@ -1,11 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IAprioriInput } from '../apriori/apriori.component';
+import { IAlgorithm } from '../models/databases.model';
 
 const DATA_API = 'http://localhost:8080/api/data/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ responseType: 'text' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
 
@@ -34,6 +36,10 @@ export class DataService {
     return this.httpClient.get(DATA_API + 'algorithmNames', {
       headers: httpOptions.headers
     });
+  }
+
+  public executeAlgorithm(input: IAlgorithm): Observable<any> {
+    return this.httpClient.post<IAprioriInput>(DATA_API + 'executeAlgorithm', input, httpOptions);
   }
 
 
