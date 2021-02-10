@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Algorithms, IAlgorithm, IGeneralCollectionData } from '../models/databases.model';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-apriori',
@@ -7,13 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AprioriComponent implements OnInit {
 
-  constructor() { }
+  public passedData:any;
+  public textAreaText: string = "Selected data: \n\n";
+  public form: IAprioriInput = {};
+
+  private generalCollectionData: IGeneralCollectionData = {};
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-  }
+    const passedData: Array<any> = history.state.data;
+    this.generalCollectionData = history.state.collectionInfo;
 
-  onSubmit(): void {
+    if(passedData) {
+      passedData.forEach((data: any) => {
+        this.textAreaText = `${this.textAreaText} ${data} \n`;
+      });
+    }
     
   }
 
+  onSubmit(): void {
+    const algorithm:IAlgorithm = {
+      name: Algorithms.Apriori,
+      properties: this.form,
+      collectionName: this.generalCollectionData.collectionName,
+      databaseName: this.generalCollectionData.databaseName,
+      columnName: this.generalCollectionData.columnName
+    } 
+    
+    this.dataService.executeAlgorithm(algorithm).subscribe(
+      data => {
+        this.textAreaText = `${this.textAreaText} \n ${data.result}`;
+      }
+    )
+  }
+
+}
+
+export interface IAprioriInput {
+  minimumSupport?: number;
+  minimumConfidence?: number;
+  itemCount?: number;
 }
