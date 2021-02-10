@@ -37,15 +37,30 @@ export class DatabasesComponent implements OnInit {
   }
 
 
-  public clickMenuItem(algorithmName: string) {
-    if(algorithmName){
-      this.router.navigateByUrl(`/${algorithmName}`);
+  public clickMenuItem(column: string, algorithmName: string) {
+    if (algorithmName && column) {
+
+      const filteredData: Array<any> = [];
+      this.dataSource.forEach((data: any) => {
+        filteredData.push(data[column]);
+      });
+
+      this.router.navigateByUrl(`/${algorithmName}`, {
+        state: {
+          data: filteredData,
+          collectionInfo: {
+            collectionName: this.selectedCollection,
+            databaseName: this.selectedDatabase,
+            columnName: column
+          }
+        }
+      });
     }
   }
 
   public clickedExpansionPanelItem(databaseName: string | undefined, nameOfExpansionPanelItem: string): void {
 
-    if(this.selectedCollection !== nameOfExpansionPanelItem || this.selectedDatabase !== databaseName){
+    if (this.selectedCollection !== nameOfExpansionPanelItem || this.selectedDatabase !== databaseName) {
       this.dataSource = [];
       this.selectedCollection = nameOfExpansionPanelItem;
       this.selectedDatabase = databaseName as string;
@@ -54,7 +69,7 @@ export class DatabasesComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   private convertDataToDataSource(data: ICollectionData): void {
