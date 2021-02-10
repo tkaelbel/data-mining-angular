@@ -23,7 +23,7 @@
                       </button>
                       <mat-menu #menu="matMenu">
                           <div *ngFor="let algorithmName of algorithmNames">
-                            <button mat-menu-item (click)="clickMenuItem(algorithmName)">
+                            <button mat-menu-item (click)="clickMenuItem(column, algorithmName)">
                                 <span>{{algorithmName}}</span>
                               </button>
                           </div>
