@@ -9,9 +9,11 @@ import { DataService } from '../services/data.service';
 })
 export class AprioriComponent implements OnInit {
 
-  public passedData:any;
+  public passedData: any;
   public textAreaText: string = "Selected data: \n\n";
   public form: IAprioriInput = {};
+
+  private initialData: string = "";
 
   private generalCollectionData: IGeneralCollectionData = {};
 
@@ -21,28 +23,31 @@ export class AprioriComponent implements OnInit {
     const passedData: Array<any> = history.state.data;
     this.generalCollectionData = history.state.collectionInfo;
 
-    if(passedData) {
+    if (passedData) {
       passedData.forEach((data: any) => {
         this.textAreaText = `${this.textAreaText} ${data} \n`;
+        this.initialData = this.textAreaText;
       });
     }
-    
+
   }
 
   onSubmit(): void {
-    const algorithm:IAlgorithm = {
+    const algorithm: IAlgorithm = {
       name: Algorithms.Apriori,
       properties: this.form,
       collectionName: this.generalCollectionData.collectionName,
       databaseName: this.generalCollectionData.databaseName,
       columnName: this.generalCollectionData.columnName
-    } 
-    
-    this.dataService.executeAlgorithm(algorithm).subscribe(
-      data => {
-        this.textAreaText = `${this.textAreaText} \n ${data.result}`;
-      }
-    )
+    }
+
+    this.dataService.executeAlgorithm(algorithm).subscribe((data: any) => {
+      this.textAreaText = `${this.textAreaText} \n ${data.result}`;
+    });
+  }
+
+  public clear(): void {
+    this.textAreaText = this.initialData;
   }
 
 }
