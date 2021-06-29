@@ -10,6 +10,10 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
+const httpOptionsStream = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/ndjson' })
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +44,10 @@ export class DataService {
 
   public executeAlgorithm(input: IAlgorithm): Observable<any> {
     return this.httpClient.post<IAprioriInput>(DATA_API + 'executeAlgorithm', input, httpOptions);
+  }
+
+  public executeAlgorithmStream(input: IAlgorithm): Observable<any> {
+    return this.httpClient.post<IAprioriInput>(DATA_API + 'executeAlgorithmStream', input, httpOptions);
   }
 
 

@@ -41,8 +41,11 @@ export class AprioriComponent implements OnInit {
       columnName: this.generalCollectionData.columnName
     }
 
-    this.dataService.executeAlgorithm(algorithm).subscribe((data: any) => {
-      this.textAreaText = `${this.textAreaText} \n ${data.result}`;
+    // this.dataService.executeAlgorithm(algorithm).subscribe((data: any) => {
+    //   this.textAreaText = `${this.textAreaText} \n ${data.result}`;
+    // });
+    this.dataService.executeAlgorithmStream(algorithm).subscribe((data: any) => {
+      this.textAreaText = `${this.textAreaText} \n ${data.output}`;
     });
   }
 
